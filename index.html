@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Stop Watch</title>
+  </head>
+  <body>
+    <main id="app">
+      <div id="menu" class="">
+        <button id="stop-button">Stop Watch</button>
+        <button id="timer-button">Timer</button>
+      </div>
+      <div id="stop-watch" class="hide">
+        <div>
+          <button id="time-stop">Start</button>
+          <button id="time-reset" class="hide">Reset</button>
+        </div>
+        <div id="time-titles">
+          <b class="title">Week[s]:</b>
+          <b class="title">Day[s]:</b>
+          <b class="title">Hour[s]:</b>
+          <b class="title">Minute[s]:</b>
+          <b class="title">Second[s]:</b>
+        </div>
+        <div id="time-items">
+          <b class="time" id="week">0</b>
+          <b class="time" id="day">0</b>
+          <b class="time" id="hour">0</b>
+          <b class="time" id="min">0</b>
+          <b class="time" id="sec">0</b>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="./script.ts"></script>
+  </body>
+</html>
