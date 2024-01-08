@@ -10,27 +10,21 @@
   <body>
     <main id="app">
       <div id="menu" class="">
-        <button id="stop-button">Stop Watch</button>
+        <button id="stop-watch-button">Stop Watch</button>
         <button id="timer-button">Timer</button>
       </div>
-      <div id="stop-watch" class="hide">
-        <div>
-          <button id="time-stop">Start</button>
-          <button id="time-reset" class="hide">Reset</button>
+      <div id="stop-watch-body" class="hide">
+        <div class="stop-watch-buttons">
+          <button id="stop-watch-start">Start</button>
+          <button id="stop-watch-reset" class="hide">Reset</button>
         </div>
-        <div id="time-titles">
-          <b class="title">Week[s]:</b>
-          <b class="title">Day[s]:</b>
-          <b class="title">Hour[s]:</b>
-          <b class="title">Minute[s]:</b>
-          <b class="title">Second[s]:</b>
-        </div>
+        
         <div id="time-items">
-          <b class="time" id="week">0</b>
-          <b class="time" id="day">0</b>
-          <b class="time" id="hour">0</b>
-          <b class="time" id="min">0</b>
-          <b class="time" id="sec">0</b>
+          <input class="time" type="number" id="week" placeholder="Week">
+          <input class="time" type="number" id="day" placeholder="Day">
+          <input class="time" type="number" id="hour" placeholder="Hour">
+          <input class="time" type="number" id="min" placeholder="Min">
+          <input class="time" type="number" id="sec" placeholder="Sec">
         </div>
       </div>
     </main>

@@ -1,71 +1,123 @@
-let sec = 0;
-let min = 0;
-let hour = 0;
-let day = 0;
-let week = 0;
-const secEle = document.getElementById("sec") as HTMLElement;
-const minEle = document.getElementById("min") as HTMLElement;
-const hourEle = document.getElementById("hour") as HTMLElement;
-const dayEle = document.getElementById("day") as HTMLElement;
-const weekEle = document.getElementById("week") as HTMLElement;
+const sec = document.getElementById("sec") as HTMLInputElement;
+const min = document.getElementById("min") as HTMLInputElement;
+const hour = document.getElementById("hour") as HTMLInputElement;
+const day = document.getElementById("day") as HTMLInputElement;
+const week = document.getElementById("week") as HTMLInputElement;
 const menu = document.getElementById("menu") as HTMLElement;
-const timeStop = document.getElementById("time-stop") as HTMLElement;
-const timeReset = document.getElementById("time-reset") as HTMLElement;
+const stopWatchStart = document.getElementById("stop-watch-start") as HTMLElement;
+const stopWatchReset = document.getElementById("stop-watch-reset") as HTMLElement;
 
-let run = false;
 
-document.getElementById("stop-button")!.addEventListener("click", () => {
-  document.getElementById("stop-watch")!.classList.remove("hide");
+////////////////////////////////////////////////////////////////
+////////////////////////// Stop-Watch //////////////////////////
+////////////////////////////////////////////////////////////////
+
+document.getElementById("stop-watch-button")!.addEventListener("click", () => {
+  document.getElementById("stop-watch-body")!.classList.remove("hide");
   menu.classList.add("hide");
+  timeGoUp()
 });
 
-setInterval(() => {
-  if (run) {
-    sec++;
-    secEle.textContent = "" + sec;
-    if (sec > 60) {
-      sec = 0;
-      min++;
-      minEle.textContent = "" + min;
-    }
-    if (min > 60) {
-      min = 0;
-      hour++;
-      hourEle.textContent = "" + hour;
-    }
-    if (hour > 24) {
-      hour = 0;
-      day++;
-      dayEle.textContent = "" + day;
-    }
-    if (day > 7) {
-      day = 0;
-      week++;
-      weekEle.textContent = "" + week;
-    }
-  }
-}, 1000);
+function timeGoUp() {
+  let run = false;
 
-timeStop.addEventListener("click", () => {
-  run = !run;
-  timeStop.textContent = timeStop.textContent === "Start" ? "Stop" : "Start";
-  timeReset.classList.remove("hide");
+  setInterval(() => {
+    run && (sec.value = `${+sec.value + 1}`);
+  }, 1000);
+
+  setInterval(() => {
+    if (+sec.value >= 60) {
+      sec.value = "0";
+      min.value = `${+min.value + 1}`;
+    }
+    if (+min.value >= 60) {
+      min.value = "0";
+      hour.value = `${+hour.value + 1}`;
+    }
+    if (+hour.value >= 24) {
+      hour.value = "0";
+      day.value = `${+day.value + 1}`;
+    }
+    if (+day.value >= 7) {
+      day.value = "0";
+      week.value = `${+week.value + 1}`;
+    }
+  });
+
+  stopWatchStart.addEventListener("click", () => {
+    run = !run;
+    stopWatchStart.textContent = stopWatchStart.textContent === "Start" ? "Stop" : "Start";
+    stopWatchReset.classList.remove("hide");
+  });
+
+  stopWatchReset.addEventListener("click", () => {
+    run && (run = !run);
+    stopWatchStart.textContent = (run ? "Stop" : "Start");
+
+    stopWatchReset.classList.add("hide");
+
+    sec.value = "";
+    min.value = "";
+    hour.value = "";
+    day.value = "";
+    week.value = "";
+  });
+}
+
+
+///////////////////////////////////////////////////////////////
+//////////////////////////// Timer [ProtoType]////////////////////////////
+///////////////////////////////////////////////////////////////
+
+document.getElementById("timer-button")!.addEventListener("click", () => {
+  alert("Will be added soon....")
+  // document.getElementById("stop-watch-body")!.classList.remove("hide");
+  // menu.classList.add("hide");
+  // timeGoDown()
 });
 
-timeReset.addEventListener("click", () => {
-  run = !run;
-  timeStop.textContent = timeStop.textContent === "Start" ? "Stop" : "Start";
+// function timeGoDown() {
+//     let run = false;
 
-  timeReset.classList.add("hide");
+//   setInterval(() => {
+//     run && (sec.value = `${+sec.value - 1}`);
+//   }, 1000);
 
-  secEle.textContent = "0";
-  minEle.textContent = "0";
-  hourEle.textContent = "0";
-  dayEle.textContent = "0";
-  weekEle.textContent = "0";
-  sec = 0;
-  min = 0;
-  hour = 0;
-  day = 0;
-  week = 0;
-});
+//   setInterval(() => {
+//     if (+sec.value < 0) {
+//       sec.value = "59";
+//       min.value = `${+min.value - 1}`;
+//     }
+//     if (+min.value < 0) {
+//       min.value = "59";
+//       hour.value = `${+hour.value - 1}`;
+//     }
+//     if (+hour.value < 0) {
+//       hour.value = "23";
+//       day.value = `${+day.value - 1}`;
+//     }
+//     if (+day.value < 0) {
+//       day.value = "6";
+//       week.value = `${+week.value - 1}`;
+//     }
+//   });
+
+//   stopWatchStart.addEventListener("click", () => {
+//     run = !run;
+//     stopWatchStart.textContent = stopWatchStart.textContent === "Start" ? "Stop" : "Start";
+//     stopWatchReset.classList.remove("hide");
+//   });
+
+//   stopWatchReset.addEventListener("click", () => {
+//     run && (run = !run);
+//     stopWatchStart.textContent = (run ? "Stop" : "Start");
+
+//     stopWatchReset.classList.add("hide");
+
+//     sec.value = "";
+//     min.value = "";
+//     hour.value = "";
+//     day.value = "";
+//     week.value = "";
+//   });
+// }
